@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Selection & Teacher Assignment</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f2f5;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .course-section, .feedback-section, .teacher-profiles {
+            margin-bottom: 40px;
+        }
+
+        .course-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        label {
+            flex: 1;
+            font-size: 1rem;
+        }
+
+        select, textarea {
+            flex: 2;
+            padding: 8px;
+            margin-left: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 100px;
+            resize: none;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .teacher-profiles {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .teacher-profile-card {
+            padding: 15px;
+            margin-bottom: 10px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+
+        .teacher-profile-card h3 {
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        .teacher-profile-card p {
+            color: #777;
+            line-height: 1.4;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Course Selection and Teacher Assignment</h1>
+        
+        <!-- Theory Courses Selection -->
+        <section class="course-section">
+            <h2>Theory Courses</h2>
+            <form id="theory-course-form">
+                <div class="course-item">
+                    <label for="theory-course1">Theory Course 1:</label>
+                    <select id="theory-course1" class="course-select">
+                        <option value="Course A">Course A</option>
+                        <option value="Course B">Course B</option>
+                        <option value="Course C">Course C</option>
+                    </select>
+                    <label for="teacher-course1">Select Teacher:</label>
+                    <select id="teacher-course1" class="teacher-select">
+                        <option value="Teacher 1">Teacher 1</option>
+                        <option value="Teacher 2">Teacher 2</option>
+                        <option value="Teacher 3">Teacher 3</option>
+                    </select>
+                </div>
+
+                <!-- Add more course items similarly for Course 2, Course 3, etc. -->
+
+                <button type="submit">Submit Courses</button>
+            </form>
+        </section>
+
+        <!-- Lab Courses Selection -->
+        <section class="course-section">
+            <h2>Lab Courses</h2>
+            <form id="lab-course-form">
+                <div class="course-item">
+                    <label for="lab-course1">Lab Course 1:</label>
+                    <select id="lab-course1" class="course-select">
+                        <option value="Lab A">Lab A</option>
+                        <option value="Lab B">Lab B</option>
+                        <option value="Lab C">Lab C</option>
+                    </select>
+                    <label for="teacher-lab1">Select Teacher:</label>
+                    <select id="teacher-lab1" class="teacher-select">
+                        <option value="Teacher A">Teacher A</option>
+                        <option value="Teacher B">Teacher B</option>
+                        <option value="Teacher C">Teacher C</option>
+                    </select>
+                </div>
+                
+                <!-- Add more lab courses similarly -->
+
+                <button type="submit">Submit Labs</button>
+            </form>
+        </section>
+
+        <!-- Teacher Profiles Section -->
+        <section class="teacher-profiles">
+            <h2>Teacher Profiles</h2>
+            <div id="teacher-profile-container">
+                <!-- Teacher profiles will be displayed here dynamically using JavaScript -->
+            </div>
+        </section>
+
+        <!-- Feedback Section -->
+        <section class="feedback-section">
+            <h2>Submit Feedback</h2>
+            <form id="feedback-form">
+                <label for="teacher-feedback">Select Teacher:</label>
+                <select id="teacher-feedback" class="teacher-select">
+                    <option value="Teacher 1">Teacher 1</option>
+                    <option value="Teacher 2">Teacher 2</option>
+                    <option value="Teacher 3">Teacher 3</option>
+                </select>
+                <textarea id="feedback" placeholder="Enter your feedback here"></textarea>
+                <button type="submit">Submit Feedback</button>
+            </form>
+        </section>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Simulate teacher profiles data
+            const teacherProfiles = [
+                { name: "Teacher 1", rating: 4.5, projects: 5, patents: 2, background: "PhD in Computer Science" },
+                { name: "Teacher 2", rating: 4.8, projects: 3, patents: 1, background: "PhD in Mathematics" },
+                { name: "Teacher 3", rating: 4.2, projects: 6, patents: 3, background: "M.Tech in Electronics" }
+            ];
+
+            // Display teacher profiles dynamically
+            const profileContainer = document.getElementById('teacher-profile-container');
+
+            teacherProfiles.forEach(profile => {
+                const profileCard = document.createElement('div');
+                profileCard.classList.add('teacher-profile-card');
+                profileCard.innerHTML = `
+                    <h3>${profile.name}</h3>
+                    <p>Rating: ${profile.rating}</p>
+                    <p>Research Projects: ${profile.projects}</p>
+                    <p>Patents: ${profile.patents}</p>
+                    <p>Academic Background: ${profile.background}</p>
+                `;
+                profileContainer.appendChild(profileCard);
+            });
+
+            // Handle feedback form submission
+            const feedbackForm = document.getElementById("feedback-form");
+            feedbackForm.addEventListener("submit", function(event) {
+                event.preventDefault();
+                const selectedTeacher = document.getElementById("teacher-feedback").value;
+                const feedback = document.getElementById("feedback").value;
+                alert(`Feedback for ${selectedTeacher}: ${feedback}`);
+            });
+
+            // Handle course selection form submission (theory & lab)
+            document.getElementById("theory-course-form").addEventListener("submit", function(event) {
+                event.preventDefault();
+                alert("Theory courses submitted!");
+            });
+
+            document.getElementById("lab-course-form").addEventListener("submit", function(event) {
+                event.preventDefault();
+                alert("Lab courses submitted!");
+            });
+        });
+    </script>
+</body>
+</html>
